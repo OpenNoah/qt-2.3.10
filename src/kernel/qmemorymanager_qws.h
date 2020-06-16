@@ -126,8 +126,8 @@ public:
     // constructs from a memory ptr to where the data after the item starts
     QSMCacheItemPtr(void *data) {
 	char *ptr = (char*)data;
-	if ( (int)ptr != (((int)ptr+3)&~3) )
-	    qDebug("err, passed a non-aligned data ptr %x", (int)ptr);
+	if ( (long)ptr != (((long)ptr+3)&~3) )
+	    qDebug("err, passed a non-aligned data ptr %x", (long)ptr);
 	d = (QSMCacheItem*)(ptr - sizeof(QSMCacheItem));
     }
     // returns a pointer to the data after the item

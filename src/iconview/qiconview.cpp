@@ -225,6 +225,7 @@ public:
     QIconView::SelectionMode selectionMode;
     QIconViewItem *currentItem, *tmpCurrentItem, *highlightedItem, *startDragItem, *pressedItem, *selectAnchor;
     QRect *rubber;
+    QPixmap *backBuffer;
     QTimer *scrollTimer, *adjustTimer, *updateTimer, *inputTimer,
 	*fullRedrawTimer;
     int rastX, rastY, spacing;
@@ -2268,6 +2269,7 @@ QIconView::QIconView( QWidget *parent, const char *name, WFlags f )
     d->currentItem = 0;
     d->highlightedItem = 0;
     d->rubber = 0;
+    d->backBuffer = 0;
     d->scrollTimer = 0;
     d->startDragItem = 0;
     d->tmpCurrentItem = 0;
@@ -2416,6 +2418,8 @@ QIconView::~QIconView()
 	delete item;
 	item = tmp;
     }
+    delete d->backBuffer;
+    d->backBuffer = 0;
     delete d->fm;
     d->fm = 0;
 #ifndef QT_NO_TOOLTIP
@@ -2882,6 +2886,48 @@ void QIconView::doAutoScroll()
 }
 
 /*!
+    This function grabs all paintevents that otherwise would have been
+    processed by the QScrollView::viewportPaintEvent(). Here we use a
+    doublebuffer to reduce 'on-paint' flickering on QIconView
+    (and of course its childs).
+
+    \sa QScrollView::viewportPaintEvent(), QIconView::drawContents()
+*/
+
+void QIconView::bufferedPaintEvent( QPaintEvent* pe )
+{
+    QWidget* vp = viewport();
+    QRect r = pe->rect() & vp->rect();
+    int ex = r.x() + contentsX();
+    int ey = r.y() + contentsY();
+    int ew = r.width();
+    int eh = r.height();
+
+    if ( !d->backBuffer )
+	d->backBuffer = new QPixmap(vp->size());
+    if ( d->backBuffer->size() != vp->size() ) {
+	//Resize function (with hysteesis). Uses a good compromise between memory
+	//consumption and speed (number) of resizes.
+        float newWidth = (float)vp->width();
+	float newHeight = (float)vp->height();
+	if ( newWidth > d->backBuffer->width() || newHeight > d->backBuffer->height() )
+	{
+	    newWidth *= 1.1892;
+	    newHeight *= 1.1892;
+	    d->backBuffer->resize( (int)newWidth, (int)newHeight );
+	} else if ( 1.5*newWidth < d->backBuffer->width() || 1.5*newHeight < d->backBuffer->height() )
+	    d->backBuffer->resize( (int)newWidth, (int)newHeight );
+    }
+
+    QPainter p;
+    p.begin(d->backBuffer, vp);
+    drawContentsOffset(&p, contentsX(), contentsY(), ex, ey, ew, eh);
+    p.end();
+    bitBlt(vp, r.x(), r.y(), d->backBuffer, r.x(), r.y(), ew, eh);
+}
+
+/*!
+
   \reimp
 */
 
@@ -4939,7 +4985,7 @@ bool QIconView::eventFilter( QObject * o, QEvent * e )
 		if ( !d->rubber )
 		    drawDragShapes( d->oldDragPos );
 	    }
-	    viewportPaintEvent( (QPaintEvent*)e );
+            bufferedPaintEvent ((QPaintEvent*)e );
 	    if ( d->dragging ) {
 		if ( !d->rubber )
 		    drawDragShapes( d->oldDragPos );
@@ -5377,11 +5423,19 @@ void QIconView::updateItemContainer( QIconViewItem *item )
 	return;
 
     if ( item->d->container1 && d->firstContainer ) {
-	item->d->container1->items.removeRef( item );
+       //Special-case checking of the last item, since this may be
+       //called a few times for the same item.
+        if (item->d->container1->items.last() == item)
+            item->d->container1->items.removeLast();
+        else
+            item->d->container1->items.removeRef( item );
     }
     item->d->container1 = 0;
     if ( item->d->container2 && d->firstContainer ) {
-	item->d->container2->items.removeRef( item );
+        if (item->d->container2->items.last() == item)
+            item->d->container2->items.removeLast();
+        else
+            item->d->container2->items.removeRef( item );
     }
     item->d->container2 = 0;
 

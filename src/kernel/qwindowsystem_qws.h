@@ -53,6 +53,8 @@ class QWSClient;
 class QWSRegionManager;
 class QGfx;
 class QWSServerData;
+class QWSInputMethod;
+class QWSGestureMethod;
 
 class QWSInternalWindowInfo
 {

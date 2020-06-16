@@ -4037,13 +4037,14 @@ GFX_INLINE void QGfxRaster<depth,type>::hAlphaLineUnclipped( int x1,int x2,
 	for( loopc2=0;loopc2<frontadd;loopc2++ )
 	    *(alphaptr++)=get_value_32(16,(unsigned char **)&temppos);
 
-	PackType temp2;
-	unsigned char * cp;
+	volatile PackType temp2;
+	volatile unsigned short int * cp;
 	for( loopc2=0;loopc2<count;loopc2++ ) {
-	    temp2=*((PackType *)temppos);
-	    cp=(unsigned char *)&temp2;
-	    *(alphaptr++)=get_value_32(16,&cp);
-	    *(alphaptr++)=get_value_32(16,&cp);
+           temp2=*reinterpret_cast<PackType *>(temppos);
+           cp=reinterpret_cast<volatile unsigned short int *>(&temp2);
+           *(alphaptr++)=qt_conv16ToRgb(*cp);
+           cp++;
+           *(alphaptr++)=qt_conv16ToRgb(*cp);
 	    temppos += 2;
 	}
 

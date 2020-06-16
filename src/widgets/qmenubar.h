@@ -55,7 +55,7 @@ public:
     QMenuBar( QWidget *parent=0, const char *name=0 );
    ~QMenuBar();
 
-    void	updateItem( int id );
+    virtual void	updateItem( int id );
 
     void	show();				// reimplemented show
     void	hide();				// reimplemented hide
@@ -94,8 +94,8 @@ protected:
     void	focusOutEvent( QFocusEvent * );
     void	resizeEvent( QResizeEvent * );
     void	leaveEvent( QEvent * );
-    void	menuContentsChanged();
-    void	menuStateChanged();
+    virtual void	menuContentsChanged();
+    virtual void	menuStateChanged();
     void 	styleChange( QStyle& );
 
 private slots:
@@ -106,8 +106,8 @@ private slots:
     void	accelDestroyed();
 #endif
 private:
-    void	menuInsPopup( QPopupMenu * );
-    void	menuDelPopup( QPopupMenu * );
+    virtual void	menuInsPopup( QPopupMenu * );
+    virtual void	menuDelPopup( QPopupMenu * );
     void	frameChanged();
 
     bool	tryMouseEvent( QPopupMenu *, QMouseEvent * );

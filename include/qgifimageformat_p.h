@@ -1,1 +1,0 @@
-../src/3rdparty/kernel/qgifimageformat_p.h

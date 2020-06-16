@@ -1,0 +1,6 @@
+moc_*.cpp
+*.o
+*.moc
+Makefile
+lib/lib*
+bin/*

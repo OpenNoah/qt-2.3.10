@@ -918,6 +918,18 @@ static void ignoreSignal( int )
 {
 }
 
+static void catchSegvSignal( int )
+{
+#ifndef QT_NO_QWS_KEYBOARD
+    if ( qwsServer )
+	qwsServer->closeKeyboard();
+#endif
+    QWSServer::closedown();
+    fprintf(stderr, "Segmentation fault.\n");
+    exit(1);
+}
+
+
 /*!
   \class QWSServer qwindowsystem_qws.h
   \brief Server-specific functionality in Qt/Embedded
@@ -1043,6 +1055,7 @@ QWSServer::QWSServer( int flags, QObject *parent, const char *name ) :
     }
 
     signal(SIGPIPE, ignoreSignal); //we get it when we read
+    signal(SIGSEGV, catchSegvSignal); //recover the keyboard on crash
 #endif
     focusw = 0;
     mouseGrabber = 0;

@@ -1182,7 +1182,7 @@ int QWindowsStyle::popupMenuItemHeight( bool /*checkable*/, QMenuItem* mi, const
 	h = fm.height() + 2*motifItemVMargin + 2*motifItemFrame;
 
     if ( !mi->isSeparator() && mi->iconSet() != 0 ) {
-	h = QMAX( h, mi->iconSet()->pixmap( QIconSet::Small, QIconSet::Normal ).height() + 2*motifItemFrame );
+	h = QMAX( h, mi->iconSet()->pixmap().height() + 2*motifItemFrame );
     }
     if ( mi->custom() )
 	h = QMAX( h, mi->custom()->sizeHint().height() + 2*motifItemVMargin + 2*motifItemFrame );
@@ -1246,7 +1246,11 @@ void QWindowsStyle::drawPopupMenuItem( QPainter* p, bool checkable, int maxpmw, 
 	QIconSet::Mode mode = dis ? QIconSet::Disabled : QIconSet::Normal;
 	if (act && !dis )
 	    mode = QIconSet::Active;
-	QPixmap pixmap = mi->iconSet()->pixmap( QIconSet::Small, mode );
+	QPixmap pixmap;
+	if ( mode == QIconSet::Disabled )
+		pixmap = mi->iconSet()->pixmap( QIconSet::Automatic, QIconSet::Disabled );
+	else
+		pixmap = mi->iconSet()->pixmap();
 	int pixw = pixmap.width();
 	int pixh = pixmap.height();
 	if ( act && !dis ) {

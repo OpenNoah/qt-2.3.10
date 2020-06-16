@@ -633,7 +633,7 @@ void QWidget::grabMouse( const QCursor &cursor )
 	qt_mouseGrb->releaseMouse();
 
     qwsDisplay()->grabMouse(this,TRUE);
-    qwsDisplay()->selectCursor(this, (unsigned int)cursor.handle());
+    qwsDisplay()->selectCursor(this, (long)cursor.handle());
     qt_mouseGrb = this;
     qt_pressGrab = 0;
 }
@@ -1840,11 +1840,11 @@ void QWidget::resetInputContext()
 void QWidget::updateCursor( const QRegion &r ) const
 {
     if ( qt_last_x && (!QWidget::mouseGrabber() || QWidget::mouseGrabber() == this) &&
-	    qt_last_cursor != (WId)cursor().handle() && !qws_overrideCursor ) {
+	    qt_last_cursor != (long)cursor().handle() && !qws_overrideCursor ) {
 	QSize s( qt_screen->width(), qt_screen->height() );
 	QPoint pos = qt_screen->mapToDevice(QPoint(*qt_last_x, *qt_last_y), s);
 	if ( r.contains(pos) )
-	    qwsDisplay()->selectCursor((QWidget*)this, (unsigned int)cursor().handle());
+	    qwsDisplay()->selectCursor((QWidget*)this, (long)cursor().handle());
     }
 }
 #endif

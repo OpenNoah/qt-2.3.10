@@ -444,6 +444,7 @@ protected:
     virtual void contentsDropEvent( QDropEvent *e );
 #endif
 
+    void bufferedPaintEvent( QPaintEvent* );
     virtual void resizeEvent( QResizeEvent* e );
     virtual void keyPressEvent( QKeyEvent *e );
     virtual void focusInEvent( QFocusEvent *e );

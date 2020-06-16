@@ -285,6 +285,7 @@ void QMenuBar::updateItem( int id )
   QMenuData whenever it needs to be called.
 */
 
+#if 1
 void QMenuBar::menuContentsChanged()
 {
 #ifndef QT_NO_ACCEL
@@ -306,6 +307,7 @@ void QMenuBar::menuContentsChanged()
 #endif
     }
 }
+#endif
 
 /*!
   Recomputes the menu bar's display data according to the new

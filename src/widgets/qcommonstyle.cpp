@@ -572,7 +572,7 @@ void QStyle::drawMenuBarItem( QPainter* p, int x, int y, int w, int h,
 				    bool enabled, bool active )
 {
 #ifndef QT_NO_MENUBAR
-#ifndef QT_NO_STYLE_SGI
+#if 1 // #ifndef QT_NO_STYLE_SGI
     if (draw_menu_bar_impl != 0) {
 	QDrawMenuBarItemImpl impl = draw_menu_bar_impl;
 	(this->*impl)(p, x, y, w, h, mi, g, enabled, active);

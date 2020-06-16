@@ -14469,7 +14469,11 @@ QCString QString::local8Bit() const
     return qt_winQString2MB( *this );
 #endif
 #ifdef _WS_QWS_
-    return utf8(); // ##### if there is ANY 8 bit format supported?
+    QTextCodec* codec = QTextCodec::codecForLocale();
+    return codec
+	    ? codec->fromUnicode(*this)
+	    : utf8();
+    //return latin1(); // ##### if there is ANY 8 bit format supported?
 #endif
 #endif
 }
@@ -14515,7 +14519,12 @@ QString QString::fromLocal8Bit(const char* local8Bit, int len)
     return qt_winMB2QString( local8Bit );
 #endif
 #ifdef _WS_QWS_
-    return fromUtf8(local8Bit,len);
+    QTextCodec* codec = QTextCodec::codecForLocale();
+    if( len < 0) len = qstrlen(local8Bit);
+    return codec
+	    ? codec->toUnicode(local8Bit, len)
+	    : QString::fromUtf8(local8Bit,len);
+//    return fromLatin1(local8Bit,len);
 #endif
 #endif // QT_NO_TEXTCODEC
 }

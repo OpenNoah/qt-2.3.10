@@ -277,7 +277,7 @@ bool QVFbScreen::connect( const QString & )
     else
 	return FALSE;
 
-    if ( (int)shmrgn == -1 || shmrgn == 0 )
+    if ( (long)shmrgn == -1 || shmrgn == 0 )
 	return FALSE;
 
     hdr = (QVFbHeader *) shmrgn;
@@ -303,7 +303,7 @@ bool QVFbScreen::connect( const QString & )
 
 void QVFbScreen::disconnect()
 {
-    if ( (int)shmrgn != -1 && shmrgn ) {
+    if ( (long)shmrgn != -1 && shmrgn ) {
 	shmdt((char*)shmrgn );
 	shmrgn = 0;
     }

@@ -36,7 +36,7 @@ SYSCONF_LIBS_OPENGL	=
 SYSCONF_LIBS_YACC	= 
 
 # Linking applications
-SYSCONF_LINK		= mipsel-linux-gcc
+SYSCONF_LINK		= mipsel-linux-g++
 SYSCONF_LFLAGS		= 
 SYSCONF_LIBS		= 
 
@@ -60,7 +60,7 @@ SYSCONF_UIC		= $(QTDIR)/bin/uic
 #   - Place target in $(DESTDIR) - which has a trailing /
 #   - Usually needs to incorporate $(VER_MAJ), $(VER_MIN) and $(VER_PATCH)
 #
-SYSCONF_LINK_SHLIB	= mipsel-linux-gcc
+SYSCONF_LINK_SHLIB	= mipsel-linux-g++
 SYSCONF_LINK_TARGET_SHARED	= lib$(TARGET).so.$(VER_MAJ).$(VER_MIN).$(VER_PATCH)
 SYSCONF_LINK_LIB_SHARED	=  $(SYSCONF_LINK_SHLIB) -shared -Wl,-soname,lib$(TARGET).so.$(VER_MAJ) \
 				     $(LFLAGS) -o $(SYSCONF_LINK_TARGET_SHARED) \
@@ -95,4 +95,4 @@ SYSCONF_CFLAGS_SHOBJ	= -fPIC
 # Linking Qt
 SYSCONF_LIBS_QTLIB	= $(SYSCONF_LFLAGS_X11) $(QT_LIBS_MT) $(QT_LIBS_OPT)
 # Linking Qt applications
-SYSCONF_LIBS_QTAPP	= 
+SYSCONF_LIBS_QTAPP	= $(SYSCONF_LIBS_QTLIB)

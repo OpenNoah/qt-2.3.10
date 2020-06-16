@@ -40,6 +40,7 @@
 #ifndef QT_NO_FREETYPE
 
 extern "C" {
+//#include <ft2build.h>
 #include <freetype/freetype.h>
 }
 

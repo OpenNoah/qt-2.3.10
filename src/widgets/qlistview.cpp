@@ -5051,9 +5051,9 @@ QSize QListView::sizeHint() const
 	l = l->childItem ? l->childItem : l->siblingItem;
 
     if ( l && l->height() )
-	s.setHeight( s.height() + 10 * l->height() );
-    else
-	s.setHeight( s.height() + 140 );
+	s.setHeight( s.height() + 4 /*10*/ * l->height() );
+    else                      // ^v much too big for handhelds
+	s.setHeight( s.height() + 30 /*140*/ );
 
     if ( s.width() > s.height() * 3 )
 	s.setHeight( s.width() / 3 );

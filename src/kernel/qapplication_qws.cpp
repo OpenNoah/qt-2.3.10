@@ -2041,7 +2041,7 @@ void QApplication::setOverrideCursor( const QCursor &cursor, bool replace )
 	w = widgetAt(*qt_last_x, *qt_last_y, FALSE);
     if ( !w )
 	w = desktop();
-    QPaintDevice::qwsDisplay()->selectCursor(w, (int)app_cursor->handle());
+    QPaintDevice::qwsDisplay()->selectCursor(w, (long)app_cursor->handle());
 }
 
 void QApplication::restoreOverrideCursor()
@@ -2060,11 +2060,11 @@ void QApplication::restoreOverrideCursor()
 	cursorStack = 0;
 	qws_overrideCursor = FALSE;
 	if ( w->testWState(WState_OwnCursor) )
-	    QPaintDevice::qwsDisplay()->selectCursor(w, (int)w->cursor().handle());
+	    QPaintDevice::qwsDisplay()->selectCursor(w, (long)w->cursor().handle());
 	else
 	    QPaintDevice::qwsDisplay()->selectCursor(w, ArrowCursor);
     } else {
-	QPaintDevice::qwsDisplay()->selectCursor(w, (int)app_cursor->handle());
+	QPaintDevice::qwsDisplay()->selectCursor(w, (long)app_cursor->handle());
     }
 }
 #endif// QT_NO_CURSOR
@@ -2635,7 +2635,7 @@ int QApplication::qwsProcessEvent( QWSEvent* event )
 		    }
 		    if ( !qws_overrideCursor ) {    // is override cursor active?
 			if (curs)
-			    QPaintDevice::qwsDisplay()->selectCursor(widget, (int)curs->handle());
+			    QPaintDevice::qwsDisplay()->selectCursor(widget, (long)curs->handle());
 			else
 			    QPaintDevice::qwsDisplay()->selectCursor(widget, ArrowCursor);
 		    }

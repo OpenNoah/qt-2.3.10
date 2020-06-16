@@ -286,7 +286,7 @@ bool QWSRegionManager::attach( const QString &filename )
 	    data = (unsigned char *)shmat( shmId, 0, SHM_RDONLY );
     }
 
-    return ( shmId != -1 && (int)data != -1 );
+    return ( shmId != -1 && (long)data != -1 );
 #else
 	int dataSize = sizeof(QWSRegionHeader)                // header
 		    + sizeof(QWSRegionIndex) * QT_MAX_REGIONS // + index

@@ -55,7 +55,7 @@ public:
    ~QPopupMenu();
 
     void	popup( const QPoint & pos, int indexAtPoint = 0 );// open popup
-    void	updateItem( int id );
+    virtual void	updateItem( int id );
 
     virtual void	setCheckable( bool );
     bool	isCheckable() const;
@@ -125,9 +125,9 @@ private slots:
 
 private:
     void	menuContentsChanged();
-    void	menuStateChanged();
-    void	menuInsPopup( QPopupMenu * );
-    void	menuDelPopup( QPopupMenu * );
+    virtual void	menuStateChanged();
+    virtual void	menuInsPopup( QPopupMenu * );
+    virtual void	menuDelPopup( QPopupMenu * );
     void	frameChanged();
 
     void	actSig( int, bool = FALSE );

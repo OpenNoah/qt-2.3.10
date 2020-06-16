@@ -136,7 +136,7 @@ QVFbView::QVFbView( int display_id, int _w, int _h, int d, Rotation r, QWidget *
 	data = (unsigned char *)shmat( shmId, 0, 0 );
     }
 
-    if ( (int)data == -1 ){
+    if ( (long)data == -1 ){
 	::close(mouseFd);
 	::close(keyboardFd);
 	qFatal( "Cannot attach to shared memory %d",shmId );
