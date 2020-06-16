@@ -1,0 +1,1 @@
+../src/kernel/qwsdecoration_qws.h

@@ -1,0 +1,3 @@
+This is the official Freetype 2.0.1 release, temporarily changed so that
+broken GCC "2.96" compilers can compile it (which cannot handle preprocessor
+tokens in the filename of a #include). The patch is freetype.patch.

@@ -1,0 +1,1 @@
+../src/3rdparty/kernel/qgfxsnap_qws.h

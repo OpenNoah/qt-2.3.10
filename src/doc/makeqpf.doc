@@ -1,0 +1,87 @@
+/****************************************************************************
+** $Id: qt/doc/makeqpf.doc   2.3.10   edited 2005-01-24 $
+**
+** Documentation for QPF fonts
+**
+** Copyright (C) 2002 Trolltech AS.  All rights reserved.
+**
+** This file is part of the Qt GUI Toolkit.
+**
+** This file may be distributed under the terms of the Q Public License
+** as defined by Trolltech AS of Norway and appearing in the file
+** LICENSE.QPL included in the packaging of this file.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses may use this file in accordance with the Qt Commercial License
+** Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/qpl/ for QPL licensing information.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+/*!
+
+\page makeqpf.html
+
+\title makeqpf
+
+This tool is used to save QPF font files by rendering and saving fonts.
+
+<h1> Compiling makeqpf</h1>
+<ul>
+<li> QT_NO_QWS_TRANSFORMED and QT_NO_QWS_SAVEFONTS must not be defined by your qconfig</li>
+<li> QT_TRANSFORM_VFB must be defined if you wish to run makeqpf under QVFb</li>
+<li> QT_NO_BDF must not be defined should you wish to process BDF files</li>
+<li> QT_NO_FREETYPE must not be defined should you wish to process TTF files</li>
+</ul>
+
+Typically this means doing a build of Qt/Embedded selecting the makeqpf configure. For example:
+
+<code>
+./configure -qconfig makeqpf [extra options] <br>
+make <br>
+make -C tools/makeqf<br>
+</code>
+
+<h2> QWS fonts <h2>
+
+  Makeqpf, like any other Qt/Embedded application, relies on $QTDIR/lib/fonts/fontdir to correctly list the available fonts. 
+For more information see \link fonts-qws.html QWS Fonts \endlink
+
+<h2> Usage</h2>
+<code>
+makeqpf [-A] [-f spec-file] [font ...]
+</code>
+<ul>
+<li>-A - Render and save all fonts in fontdir</li>
+<li>-f - File of lines: fontname character-ranges e.g. "smoothtimes 0-ff,20a0-20af"</li>
+<li>font - Font to render and save</li>
+</ul>
+
+To make a "fixed" font with the currency symbols, create a file with the line:
+
+<code>fixed 0-ff,20a0-20af</code>
+
+and run <code>makeall -f yourfile</code>
+
+See also <code>./makeqpf --help</code>
+
+Hint:Press CTRL+Key_Q should you wish to quit makeqpf.
+
+Warning: If TTF(Freetype) support is allowed then the freetype development headers libraries need to be available.
+
+*/

@@ -1,0 +1,559 @@
+--- //depot/qt/2.2/src/3rdparty/freetype/builds/unix/ftconfig.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/builds/unix/ftconfig.h	Wed Jan 31 14:32:13 EST 2001
+@@ -44,8 +44,8 @@
+ 
+ 
+   /* Include the header file containing all developer build options */
+-#include FT_BUILD_H
+-#include FT_CONFIG_OPTIONS_H
++#include "freetype/config/ftbuild.h"
++#include "freetype/config/ftoption.h"
+ 
+ 
+ FT_BEGIN_HEADER
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftcchunk.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftcchunk.h	Wed Jan 31 14:32:13 EST 2001
+@@ -48,9 +48,9 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_CACHE_H
+-#include   FT_CACHE_MANAGER_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/ftcache.h"
++#include   "freetype/cache/ftcmanag.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftcglyph.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftcglyph.h	Wed Jan 31 14:32:13 EST 2001
+@@ -56,9 +56,9 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_CACHE_H
+-#include   FT_CACHE_MANAGER_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/ftcache.h"
++#include   "freetype/cache/ftcmanag.h"
+ #include   <stddef.h>
+ 
+ FT_BEGIN_HEADER
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftcimage.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftcimage.h	Wed Jan 31 14:32:13 EST 2001
+@@ -29,9 +29,9 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_CACHE_H
+-#include   FT_CACHE_INTERNAL_GLYPH_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/ftcache.h"
++#include   "freetype/cache/ftcglyph.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftcmanag.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftcmanag.h	Wed Jan 31 14:32:13 EST 2001
+@@ -65,9 +65,9 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_CACHE_H
+-#include   FT_CACHE_INTERNAL_LRU_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/ftcache.h"
++#include   "freetype/cache/ftlru.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftcsbits.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftcsbits.h	Wed Jan 31 14:32:13 EST 2001
+@@ -22,10 +22,10 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_CACHE_H
+-#include   FT_CACHE_INTERNAL_CHUNK_H
+-#include   FT_CACHE_IMAGE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/ftcache.h"
++#include   "freetype/cache/ftcchunk.h"
++#include   "freetype/cache/ftcimage.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftlru.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/cache/ftlru.h	Wed Jan 31 14:32:13 EST 2001
+@@ -61,8 +61,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/config/ftbuild.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/config/ftbuild.h	Wed Jan 31 14:32:13 EST 2001
+@@ -201,7 +201,7 @@
+ 
+ 
+   /* now include internal headers definitions from <freetype/internal/...> */
+-#include FT_PUBLIC_FILE(internal/internal.h)
++#include "freetype/internal/internal.h"
+ 
+ 
+ #endif /* __FT_BUILD_H__ */
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/config/ftconfig.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/config/ftconfig.h	Wed Jan 31 14:32:13 EST 2001
+@@ -44,8 +44,8 @@
+ #define   FT_BUILD_H   <freetype/config/ftbuild.h>
+ #endif
+ 
+-#include  FT_BUILD_H
+-#include  FT_CONFIG_OPTIONS_H
++#include  "freetype/config/ftbuild.h"
++#include  "freetype/config/ftoption.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/freetype.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/freetype.h	Wed Jan 31 14:32:13 EST 2001
+@@ -23,7 +23,7 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
++#include   "freetype/config/ftbuild.h"
+ 
+   /*************************************************************************/
+   /*                                                                       */
+@@ -43,9 +43,9 @@
+ #define FREETYPE_MINOR 0
+ 
+ 
+-#include FT_CONFIG_CONFIG_H
+-#include FT_ERRORS_H
+-#include FT_TYPES_H
++#include "freetype/config/ftconfig.h"
++#include "freetype/fterrors.h"
++#include "freetype/fttypes.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/ftbbox.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/ftbbox.h	Wed Jan 31 14:32:13 EST 2001
+@@ -33,8 +33,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/ftcache.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/ftcache.h	Wed Jan 31 14:32:13 EST 2001
+@@ -37,8 +37,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_GLYPH_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/ftglyph.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/ftglyph.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/ftglyph.h	Wed Jan 31 14:32:13 EST 2001
+@@ -35,8 +35,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/ftimage.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/ftimage.h	Wed Jan 31 14:32:13 EST 2001
+@@ -31,7 +31,7 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
++#include   "freetype/config/ftbuild.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/ftlist.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/ftlist.h	Wed Jan 31 14:32:13 EST 2001
+@@ -30,8 +30,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/ftmm.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/ftmm.h	Wed Jan 31 14:32:13 EST 2001
+@@ -22,8 +22,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_TYPE1_TABLES_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/t1tables.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/ftmodule.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/ftmodule.h	Wed Jan 31 14:32:13 EST 2001
+@@ -22,8 +22,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/ftnames.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/ftnames.h	Wed Jan 31 14:32:13 EST 2001
+@@ -25,8 +25,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/ftoutln.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/ftoutln.h	Wed Jan 31 14:32:13 EST 2001
+@@ -23,8 +23,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/ftrender.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/ftrender.h	Wed Jan 31 14:32:13 EST 2001
+@@ -22,9 +22,9 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_MODULE_H
+-#include   FT_GLYPH_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/ftmodule.h"
++#include   "freetype/ftglyph.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/ftsynth.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/ftsynth.h	Wed Jan 31 14:32:13 EST 2001
+@@ -40,8 +40,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/fttypes.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/fttypes.h	Wed Jan 31 14:32:13 EST 2001
+@@ -23,9 +23,9 @@
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+ 
+-#include   FT_BUILD_H
+-#include   FT_SYSTEM_H
+-#include   FT_IMAGE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/ftsystem.h"
++#include   "freetype/ftimage.h"
+ #include   <stddef.h>
+ 
+ FT_BEGIN_HEADER
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/autohint.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/autohint.h	Wed Jan 31 14:32:13 EST 2001
+@@ -72,8 +72,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/fnttypes.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/fnttypes.h	Wed Jan 31 14:32:13 EST 2001
+@@ -23,8 +23,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftcalc.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftcalc.h	Wed Jan 31 14:32:13 EST 2001
+@@ -22,8 +22,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftdebug.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftdebug.h	Wed Jan 31 14:32:13 EST 2001
+@@ -22,8 +22,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_CONFIG_CONFIG_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/config/ftconfig.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftdriver.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftdriver.h	Wed Jan 31 14:32:13 EST 2001
+@@ -22,8 +22,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_MODULE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/ftmodule.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftextend.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftextend.h	Wed Jan 31 14:32:13 EST 2001
+@@ -22,8 +22,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_INTERNAL_OBJECTS_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/internal/ftobjs.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftmemory.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftmemory.h	Wed Jan 31 14:32:13 EST 2001
+@@ -22,9 +22,9 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_CONFIG_CONFIG_H
+-#include   FT_TYPES_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/config/ftconfig.h"
++#include   "freetype/fttypes.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftobjs.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftobjs.h	Wed Jan 31 14:32:13 EST 2001
+@@ -30,11 +30,11 @@
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+ 
+-#include FT_BUILD_H
+-#include FT_RENDER_H
+-#include FT_INTERNAL_MEMORY_H
+-#include FT_INTERNAL_DRIVER_H
+-#include FT_INTERNAL_AUTOHINT_H
++#include "freetype/config/ftbuild.h"
++#include "freetype/ftrender.h"
++#include "freetype/internal/ftmemory.h"
++#include "freetype/internal/ftdriver.h"
++#include "freetype/internal/autohint.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftstream.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/ftstream.h	Wed Jan 31 14:32:13 EST 2001
+@@ -22,8 +22,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_INTERNAL_OBJECTS_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/internal/ftobjs.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/psaux.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/psaux.h	Wed Jan 31 14:32:13 EST 2001
+@@ -23,9 +23,9 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_INTERNAL_OBJECTS_H
+-#include   FT_INTERNAL_TYPE1_TYPES_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/internal/ftobjs.h"
++#include   "freetype/internal/t1types.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/psnames.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/psnames.h	Wed Jan 31 14:32:13 EST 2001
+@@ -23,8 +23,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/sfnt.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/sfnt.h	Wed Jan 31 14:32:13 EST 2001
+@@ -22,9 +22,9 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_INTERNAL_DRIVER_H
+-#include   FT_INTERNAL_TRUETYPE_TYPES_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/internal/ftdriver.h"
++#include   "freetype/internal/tttypes.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/t1types.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/t1types.h	Wed Jan 31 14:32:13 EST 2001
+@@ -23,9 +23,9 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_TYPE1_TABLES_H
+-#include   FT_INTERNAL_POSTSCRIPT_NAMES_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/t1tables.h"
++#include   "freetype/internal/psnames.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/t2types.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/t2types.h	Wed Jan 31 14:32:13 EST 2001
+@@ -23,8 +23,8 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_FREETYPE_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/internal/tttypes.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/internal/tttypes.h	Wed Jan 31 14:32:13 EST 2001
+@@ -23,9 +23,9 @@
+ #ifndef    FT_BUILD_H
+ #  define  FT_BUILD_H  <freetype/config/ftbuild.h>
+ #endif
+-#include   FT_BUILD_H
+-#include   FT_TRUETYPE_TABLES_H
+-#include   FT_INTERNAL_OBJECTS_H
++#include   "freetype/config/ftbuild.h"
++#include   "freetype/tttables.h"
++#include   "freetype/internal/ftobjs.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/t1tables.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/t1tables.h	Wed Jan 31 14:32:13 EST 2001
+@@ -24,8 +24,8 @@
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+ 
+-#include FT_BUILD_H
+-#include FT_FREETYPE_H
++#include "freetype/config/ftbuild.h"
++#include "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/tttables.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/tttables.h	Wed Jan 31 14:32:13 EST 2001
+@@ -24,8 +24,8 @@
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+ 
+-#include FT_BUILD_H
+-#include FT_FREETYPE_H
++#include "freetype/config/ftbuild.h"
++#include "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 
+--- //depot/qt/2.2/src/3rdparty/freetype/include/freetype/tttags.h#1	Wed Jan 31 14:32:13 EST 2001
++++ /home/warwick/qt/2.2/src/3rdparty/freetype/include/freetype/tttags.h	Wed Jan 31 14:32:13 EST 2001
+@@ -23,8 +23,8 @@
+ #  define  FT_BUILD_H    <freetype/config/ftbuild.h>
+ #endif
+ 
+-#include FT_BUILD_H
+-#include FT_FREETYPE_H
++#include "freetype/config/ftbuild.h"
++#include "freetype/freetype.h"
+ 
+ FT_BEGIN_HEADER
+ 

@@ -1,0 +1,1 @@
+../src/kernel/qgfxlinuxfb_qws.h
